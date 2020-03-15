@@ -11,19 +11,42 @@ const axios = require('axios').default;
 // ● Articles are to be fetched from The Guardian API
 // ● Endpoint should support search and Pagination
 
+router.get('/articles', async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const pageSize = parseInt(req.query['page-size']) || 10;
+    const URL = `https://content.guardianapis.com/search?page=${page}&page-size=${pageSize}&api-key=${API_KEY}`;
+    let response = await axios.get(URL);
+    const data = response.data.response;
+    res.send(data);
+  } catch (err) {
+   errorHandler(err);
+  }
+})
 
-// List of articles
-router.get('/articles/:id', (req, res) => {
-  res.send('About this wiki');
+
+// Specific article
+router.get('/articles/:id', async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const pageSize = parseInt(req.query['page-size']) || 10;
+    const id = req.params.id;
+    const URL = `https://content.guardianapis.com/search?ids=${id}page=${page}&page-size=${pageSize}&api-key=${API_KEY}`;
+    let response = await axios.get(URL);
+    const data = response.data.response;
+    res.send(data);
+  } catch (err) {
+   errorHandler(err);
+  }
 })
 
 // Article search
-router.get('/articles/search/:search', async (req, res) => {
+router.get('/articles/search/:term', async (req, res) => {
     try {
       const page = parseInt(req.query.page) || 1;
       const pageSize = parseInt(req.query['page-size']) || 10;
-      const search = req.params.search;
-      const URL = `https://content.guardianapis.com/search?page=${page}&page-size=${pageSize}&q=${search}&api-key=${API_KEY}`;
+      const term = req.params.term;
+      const URL = `https://content.guardianapis.com/search?page=${page}&page-size=${pageSize}&q=${term}&api-key=${API_KEY}`;
       let response = await axios.get(URL);
       const data = response.data.response;
       res.send(data);

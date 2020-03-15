@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Article } from '../models/article';
+import { Observable, of } from 'rxjs';
+import { ArticleResponse } from '../models/article-response';
+import { map } from 'rxjs/operators';
 
-const baseUrl = 'http://localhost:4201';
+const baseUrl = 'http://localhost:4201/articles';
 
 @Injectable({
   providedIn: 'root'
@@ -12,38 +14,31 @@ export class ArticlesService {
   constructor(private http: HttpClient) {
   }
 
-  private async request(method: string, url: string, data?: any) {
-
-    console.log('request ' + JSON.stringify(data));
-    const result = this.http.request(method, url, {
+  private async request(method: string, url: string, data?: any): Promise<any> {
+   const result = this.http.request(method, url, {
       body: data,
       responseType: 'json',
       observe: 'body'
     });
     return new Promise<any>((resolve, reject) => {
-      result.subscribe(resolve as any, reject as any);
+      return result.subscribe(resolve as any, reject as any);
     });
   }
 
-  getArticles() {
-    return this.request('get', `${baseUrl}/articles`);
+  searchArticles(term: string, page = 1, pageSize = 10): Observable<ArticleResponse> {
+    term = term.trim();
+    return this.http.get(`${baseUrl}/search/${term}?page=${page}&page-size=${pageSize}`)
+    .pipe(map(response => { return <ArticleResponse>response; }));
+   };
+
+  getArticles(): Observable<ArticleResponse>  { 
+    return this.http.get(`${baseUrl}`)
+      .pipe(map(response => { return <ArticleResponse>response; }));
   }
 
-  getArticle(id: string) {
-    return this.request('get', `${baseUrl}/articles/${id}`);
+  getArticle(id: string): Observable<ArticleResponse>  { 
+    return this.http.get(`${baseUrl}/${id}`)
+    .pipe(map(response => { return <ArticleResponse>response; }));
   }
 
-  createArticle(article: Article) {
-    console.log('createArticle ' + JSON.stringify(article));
-    return this.request('post', `${baseUrl}/articles`, article);
-  }
-
-  updateArticle(article: Article) {
-    console.log('updateArticle ' + JSON.stringify(article));
-    return this.request('post', `${baseUrl}/articles/${article.id}`, article);
-  }
-
-  deleteArticle(id: string) {
-    return this.request('delete', `${baseUrl}/articles/${id}`);
-  }
 }
