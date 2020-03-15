@@ -13,7 +13,8 @@ import { fromEvent } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   private articles: Article[] = [];
-  private subscription: Subscription;
+  private getSub: Subscription;
+  private searchSub: Subscription;
   private loading: boolean = false;
   @ViewChild('searchField', { static: true }) searchField: ElementRef;
 
@@ -22,19 +23,18 @@ export class HomeComponent implements OnInit {
   }
 
   getArticles (): void {
-    this.subscription = this.articleService.getArticles().subscribe((response: ArticleResponse) => {
+    this.getSub = this.articleService.getArticles().subscribe((response: ArticleResponse) => {
       this.articles = response.results;
     })
   }
 
   searchArticles (term: string): void {
     this.loading = true;
-    this.articleService.searchArticles(term).subscribe((response: ArticleResponse) => {
+    this.searchSub = this.articleService.searchArticles(term).subscribe((response: ArticleResponse) => {
       this.articles = response.results;
       this.loading = false;
-    }),(err) => {
-       console.error(err);
-       this.loading = false;
+    }, (err) => {
+      console.error(err);
     });
   }
 
@@ -67,7 +67,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnDestroy () {
-    if (this.subscription) this.subscription.unsubscribe();
+    if (this.getSub) this.getSub.unsubscribe();
+    if (this.searchSub) this.searchSub.unsubscribe();
   }
 
 
