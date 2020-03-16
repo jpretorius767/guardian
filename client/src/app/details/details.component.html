@@ -1,1 +1,9 @@
-<p>details works!</p>
+<div *ngIf="article" class="card-container">
+    <h2>{{article.webTitle}}</h2>
+
+    <h3>{{ article.sectionName }}</h3>
+    <span>{{ article.webPublicationDate | date:'medium'  }}</span>
+    <span>{{ article.webUrl }}</span>
+    <span>{{ article.pillarId }}</span>
+    <span>{{ article.pillarName }}</span>
+</div>

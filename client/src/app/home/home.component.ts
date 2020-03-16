@@ -3,9 +3,9 @@ import { ArticlesService } from '../services/articles.service';
 import { Subscription } from 'rxjs';
 import { Article } from '../models/article';
 import { ArticleResponse } from '../models/article-response';
-import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map, filter } from 'rxjs/operators';
 import { fromEvent } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   private loading: boolean = false;
   @ViewChild('searchField', { static: true }) searchField: ElementRef;
 
-  constructor(private articleService: ArticlesService) {
+  constructor(private articleService: ArticlesService, private router: Router) {
 
   }
 
@@ -34,34 +34,22 @@ export class HomeComponent implements OnInit {
       this.articles = response.results;
       this.loading = false;
     }, (err) => {
+      this.loading = false;
       console.error(err);
     });
   }
 
   ngOnInit() {
     fromEvent(this.searchField.nativeElement, 'keyup').pipe(
-      // get value
       map((event: any) => {
         return event.target.value;
       })
-      // if character length greater then 2
       , filter((res: string) => res.length > 2)
-      // Time in milliseconds between key events
       , debounceTime(1000)        
-      // If previous query is diffent from current   
       , distinctUntilChanged()
-      // subscription for response
       ).subscribe((searchText: string) => {
         this.loading = true;
         this.searchArticles(searchText);
-        // this.searchGetCall(text).subscribe((res)=> {
-        //   console.log('res',res);
-        //   this.isSearching = false;
-        //   this.apiResponse = res;
-        // },(err)=>{
-        //   this.isSearching = false;
-        //   console.log('error',err);
-        // });
       });
     this.getArticles();
   }

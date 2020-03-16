@@ -37,8 +37,9 @@ export class ArticlesService {
   }
 
   getArticle(id: string): Observable<ArticleResponse>  { 
-    return this.http.get(`${baseUrl}/${id}`)
+    return this.http.get(`${baseUrl}?ids=${id}`)
     .pipe(map(response => { return <ArticleResponse>response; }));
+
   }
 
 }
