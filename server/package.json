@@ -1,4 +1,10 @@
 {
+  "name": "guardian",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "private": true,
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",

@@ -3,7 +3,8 @@
 
     <h3>{{ article.sectionName }}</h3>
     <span>{{ article.webPublicationDate | date:'medium'  }}</span>
-    <span>{{ article.webUrl }}</span>
-    <span>{{ article.pillarId }}</span>
-    <span>{{ article.pillarName }}</span>
+    <span><a [href]="article.webUrl">{{article.webUrl}}</a></span>
+
 </div>
+<div class="centered"><button mat-button (click)="goBack()">Back</button></div>
+

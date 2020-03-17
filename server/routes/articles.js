@@ -14,7 +14,6 @@ const axios = require('axios').default;
 // articles?ids={value}
 router.get('/articles', async (req, res) => {
   try {
-    console.log(req.params.id);
     const page = parseInt(req.query.page) || 1;
     const pageSize = parseInt(req.query['page-size']) || 10;
     const idsString = req.query.ids ? `ids=${req.query.ids}` : '';

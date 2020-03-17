@@ -1,11 +1,11 @@
 .search-container {
-    width: 80%;
-    margin-bottom: 10px;
-    
-.form-group {
-    text-align: center;
     width: 100%;
-  }
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.search-field {
+  width: 50%;
 }
 
 .card-container {
@@ -18,3 +18,6 @@
   display: inline-block;
 }
    
+.article-card {
+  margin-bottom: 5px;
+}

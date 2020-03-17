@@ -9,6 +9,8 @@ import { DetailsComponent } from './details/details.component';
 import { ArticlesService } from './services/articles.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatIconModule, MatSlideToggleModule, MatCardModule, MatInputModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,13 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NoopAnimationsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule,
+    MatSlideToggleModule
   ],
   providers: [ArticlesService],
   bootstrap: [AppComponent]

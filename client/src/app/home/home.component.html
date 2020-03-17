@@ -1,5 +1,5 @@
 <div class="search-container">
-<form class="form-inline">
+<!-- <form class="form-inline">
   <div class="form-group">
     <input type="search"
       class="form-control"
@@ -7,12 +7,35 @@
       #searchField
     >
   </div>
-</form>
+</form> -->
+
+  <mat-form-field class="search-field">
+    <input matInput type="search" #searchField placeholder="Enter search string">
+    <button mat-button *ngIf="searchField.value" matSuffix mat-icon-button aria-label="Clear" (click)="searchField.value=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-slide-toggle>Sort Ascending</mat-slide-toggle>
 </div>
-  <div *ngFor="let article of articles;let index = index" class="card-container">
+  <!-- <mat-card *ngFor="let article of articles;let index = index">
     <a class="card" target="_blank" [routerLink]="['/details/', article.id]">
       <span class="article-title">
         {{ article.webTitle }}
         </span>
    </a>
-  </div>
+  </mat-card> -->
+<div>
+  <mat-card class="article-card" *ngFor="let article of articles;let index = index">
+   
+    <mat-card-content>
+        <a target="_blank" [routerLink]="['/details/', article.id]">
+            {{ article.webTitle }} - {{ article.webPublicationDate | date:'medium'  }}
+
+       </a>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="showDetails(article.id)">More</button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>  

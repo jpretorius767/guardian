@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticlesService } from '../services/articles.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleResponse, Article } from '../models';
 
 @Component({
@@ -14,8 +14,13 @@ export class DetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute, 
+    private router: Router,
     private articleService: ArticlesService) {
     this.route.params.subscribe( params => this.getArticle(params.id));
+  }
+
+  goBack() {
+    this.router.navigate(['home']);
   }
 
   getArticle (id: string) {

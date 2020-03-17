@@ -6,6 +6,7 @@ import { ArticleResponse } from '../models/article-response';
 import { debounceTime, distinctUntilChanged, map, filter } from 'rxjs/operators';
 import { fromEvent } from 'rxjs';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -26,6 +27,10 @@ export class HomeComponent implements OnInit {
     this.getSub = this.articleService.getArticles().subscribe((response: ArticleResponse) => {
       this.articles = response.results;
     })
+  }
+
+  showDetails(id: string) {
+    this.router.navigate(['details', id]);
   }
 
   searchArticles (term: string): void {
