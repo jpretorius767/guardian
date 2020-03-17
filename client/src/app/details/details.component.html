@@ -1,4 +1,4 @@
-<div *ngIf="article" class="card-container">
+<!-- <div *ngIf="article" class="card-container">
     <div><h2>{{ article.webTitle }}</h2></div>
 
     <mat-chip-list>
@@ -7,6 +7,22 @@
     <div class="article-date">{{ article.webPublicationDate | date:'medium' }}</div>
     <div class="article-url"><a [href]="article.webUrl">{{ article.webUrl }}</a></div>
 
+</div> -->
+<div class="centered">
+    <div>
+<mat-card *ngIf="article" class="article-card">
+    <h2>{{ article.webTitle }}</h2>    <mat-chip-list>
+        <mat-chip color="primary" selected>{{ article.sectionName }}</mat-chip>
+     </mat-chip-list>
+    <mat-card-content>
+  
+        <a class="article-link" target="_blank" (click)="showDetails(article.id)">
+            {{ article.webTitle }} - {{ article.webPublicationDate | date:'medium'  }}
+       </a>
+    </mat-card-content>
+
+  </mat-card>
+</div>
 </div>
 <div class="centered"><button mat-button (click)="goBack()">Back</button></div>
 
