@@ -33,7 +33,6 @@ router.get('/articles/search/:term', async (req, res) => {
       const pageSize = parseInt(req.query['page-size']) || 10;
       const term = req.params.term;
       const URL = `https://content.guardianapis.com/search?page=${page}&page-size=${pageSize}&q=${term}&api-key=${API_KEY}`;
-      console.log(URL);
       let response = await axios.get(URL);
       const data = response.data.response;
       res.send(data);
