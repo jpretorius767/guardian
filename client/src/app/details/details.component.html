@@ -15,10 +15,11 @@
         <mat-chip color="primary" selected>{{ article.sectionName }}</mat-chip>
      </mat-chip-list>
     <mat-card-content>
-  
+        <p>
         <a class="article-link" target="_blank" (click)="showDetails(article.id)">
-            {{ article.webTitle }} - {{ article.webPublicationDate | date:'medium'  }}
-       </a>
+            {{ article.webTitle }}
+       </a> {{ article.webPublicationDate | date:'medium'  }}
+       </p>
     </mat-card-content>
 
   </mat-card>
