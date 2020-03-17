@@ -18,15 +18,32 @@ export class HomeComponent implements OnInit {
   private searchSub: Subscription;
   private loading: boolean = false;
   @ViewChild('searchField', { static: true }) searchField: ElementRef;
+  selected = 'newest';
 
-  constructor(private articleService: ArticlesService, private router: Router) {
+  constructor(private articleService: ArticlesService, private router: Router) { }
 
+  clearSearch() {
+    this.searchField.nativeElement.value = '';
+    this.getArticles();
+  }
+
+  sortChanged(source: any, value: any) {
+    console.log(source, value);
+    this.sortData(this.selected === 'newest');
   }
 
   getArticles (): void {
     this.getSub = this.articleService.getArticles().subscribe((response: ArticleResponse) => {
       this.articles = response.results;
     })
+  }
+
+  sortData(ascending: Boolean) {
+    if (ascending) {
+        this.articles.sort((a, b) => new Date(b.webPublicationDate).getTime() - new Date(a.webPublicationDate).getTime());
+    } else {
+      this.articles.sort((a, b) => new Date(a.webPublicationDate).getTime() - new Date(b.webPublicationDate).getTime());
+    }
   }
 
   showDetails(id: string) {

@@ -12,12 +12,31 @@
   margin-bottom: 4px;
 }
 
+.article-sort {
+  float: right;
+}
+
 .article-title {
   margin-top: 10px;
   margin-bottom: 10px;
   display: inline-block;
 }
-   
+
+.article-content {
+   margin-left: 10%;
+   width: 80%;
+  
 .article-card {
   margin-bottom: 5px;
+  .article-link {
+    cursor: pointer;
+  }
+  }
 }
+
+
+.sort-container {
+  margin-left: 77%;
+  width: 10%;
+}
+

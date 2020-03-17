@@ -1,9 +1,11 @@
 <div *ngIf="article" class="card-container">
-    <h2>{{article.webTitle}}</h2>
+    <div><h2>{{ article.webTitle }}</h2></div>
 
-    <h3>{{ article.sectionName }}</h3>
-    <span>{{ article.webPublicationDate | date:'medium'  }}</span>
-    <span><a [href]="article.webUrl">{{article.webUrl}}</a></span>
+    <mat-chip-list>
+       <mat-chip color="primary" selected>{{ article.sectionName }}</mat-chip>
+    </mat-chip-list>
+    <div class="article-date">{{ article.webPublicationDate | date:'medium' }}</div>
+    <div class="article-url"><a [href]="article.webUrl">{{ article.webUrl }}</a></div>
 
 </div>
 <div class="centered"><button mat-button (click)="goBack()">Back</button></div>

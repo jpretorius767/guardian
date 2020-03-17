@@ -10,7 +10,7 @@ import { ArticlesService } from './services/articles.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatIconModule, MatSlideToggleModule, MatCardModule, MatInputModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatSelectModule, MatChipsModule, MatSlideToggleModule, MatCardModule, MatInputModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -29,6 +29,8 @@ import { MatButtonModule, MatIconModule, MatSlideToggleModule, MatCardModule, Ma
     MatCardModule,
     MatButtonModule,
     MatInputModule,
+    MatChipsModule,
+    MatSelectModule,
     MatIconModule,
     MatSlideToggleModule
   ],
