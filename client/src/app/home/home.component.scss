@@ -22,6 +22,10 @@
   display: inline-block;
 }
 
+.right {
+  float: right;
+}
+
 .article-content {
    margin-left: 10%;
    width: 80%;
@@ -38,5 +42,9 @@
 .sort-container {
   margin-left: 77%;
   width: 10%;
+}
+
+.mat-card-content {
+  margin-top: 5px;
 }
 

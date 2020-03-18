@@ -4,18 +4,36 @@
       margin-top: 5px;
     }
 }
-.article-card { 
-  max-width: 480px;
+
+.h2 {
+  text-align: left;
 }
 
 .mat-card {
   margin-left: 30%;
 }
 
-.article-link {
+.loading { 
+  text-align: center;
+  width: 100%;
+}
+
+.article-card { 
+  max-width: 480px;
+  
+.article-content {
   margin-top: 5px;
   margin-bottom: 5px;
+  text-align: left;
+  .article-link {
+    margin-bottom: 5px;
+  }
+  .article-date {
+    font-weight: bold;
+  }
 }
+}
+
 
 .mat-chip-list {
   margin-left: 1%;

@@ -33,8 +33,12 @@ export class HomeComponent implements OnInit {
   }
 
   getArticles (): void {
+    this.loading = true;
     this.getSub = this.articleService.getArticles().subscribe((response: ArticleResponse) => {
       this.articles = response.results;
+      this.loading = false;
+    }, (err) => {
+      this.loading = false;
     })
   }
 
@@ -70,7 +74,6 @@ export class HomeComponent implements OnInit {
       , debounceTime(1000)        
       , distinctUntilChanged()
       ).subscribe((searchText: string) => {
-        this.loading = true;
         this.searchArticles(searchText);
       });
     this.getArticles();

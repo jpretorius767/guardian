@@ -26,8 +26,8 @@ export class DetailsComponent implements OnInit {
   getArticle (id: string) {
     this.loading = true;
     this.articleService.getArticle(id).subscribe((response: ArticleResponse) => {
-      console.log(response.results[0]);
       this.article = response.results[0];
+      this.loading = false;
     }, (err) => {
       this.loading = false;
       console.error(err);

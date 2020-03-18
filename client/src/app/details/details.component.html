@@ -10,20 +10,32 @@
 </div> -->
 <div class="centered">
     <div>
-<mat-card *ngIf="article" class="article-card">
-    <h2>{{ article.webTitle }}</h2>    <mat-chip-list>
-        <mat-chip color="primary" selected>{{ article.sectionName }}</mat-chip>
-     </mat-chip-list>
-    <mat-card-content>
-        <p>
-        <a class="article-link" target="_blank" (click)="showDetails(article.id)">
-            {{ article.webTitle }}
-       </a> {{ article.webPublicationDate | date:'medium'  }}
-       </p>
-    </mat-card-content>
+        <div *ngIf="loading; else elseBlock">
+   
+            <mat-progress-bar mode="query"></mat-progress-bar>
+        </div>
+         <ng-template #elseBlock>
+                   <mat-card class="article-card">
+                    <h2>{{ article.webTitle }}</h2>    <mat-chip-list>
+                        <mat-chip color="primary" selected>{{ article.sectionName }}</mat-chip>
+                    </mat-chip-list>
+                    <mat-divider></mat-divider>
+                    <mat-card-content>
+                     
+                            <p class="article-content" >
+                                <a class="article-link" target="_blank" (click)="showDetails(article.id)">
+                                    {{ article.webTitle }}
+                                </a>
+                            
+                            </p>
+                            <div class="article-date">{{ article.webPublicationDate | date:'medium' }}</div>
+                     
+               
+                    </mat-card-content>
 
-  </mat-card>
-</div>
+                </mat-card>
+                </ng-template>  
+        </div>
 </div>
 <div class="centered"><button mat-button (click)="goBack()">Back</button></div>
 
