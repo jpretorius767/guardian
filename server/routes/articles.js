@@ -4,13 +4,6 @@ const router = express.Router();
 const API_KEY = '8f0940bd-66db-4c46-af3f-3e044ad14939';
 const axios = require('axios').default;
 
-// Data-source is The Guardian API
-// ● Two End points:
-// ○ Create one endpoint that returns list of Articles for the front-end Home-page
-// ○ Create another endpoint to get Details of the specific Article for Details-page
-// ● Articles are to be fetched from The Guardian API
-// ● Endpoint should support search and Pagination
-
 // articles?ids={value}
 router.get('/articles', async (req, res) => {
   try {
