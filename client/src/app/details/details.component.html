@@ -1,13 +1,4 @@
-<!-- <div *ngIf="article" class="card-container">
-    <div><h2>{{ article.webTitle }}</h2></div>
 
-    <mat-chip-list>
-       <mat-chip color="primary" selected>{{ article.sectionName }}</mat-chip>
-    </mat-chip-list>
-    <div class="article-date">{{ article.webPublicationDate | date:'medium' }}</div>
-    <div class="article-url"><a [href]="article.webUrl">{{ article.webUrl }}</a></div>
-
-</div> -->
 <div class="centered">
     <div>
         <div *ngIf="loading; else elseBlock">
@@ -16,9 +7,10 @@
         </div>
          <ng-template #elseBlock>
                    <mat-card class="article-card">
-                    <h2>{{ article.webTitle }}</h2>    <mat-chip-list>
+                    <h2>{{ article.webTitle }}</h2>    
+                    <!-- <mat-chip-list>
                         <mat-chip color="primary" selected>{{ article.sectionName }}</mat-chip>
-                    </mat-chip-list>
+                    </mat-chip-list> -->
                     <mat-divider></mat-divider>
                     <mat-card-content>
                      
